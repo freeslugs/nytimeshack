@@ -1,6 +1,10 @@
 var queryString = require('querystring');
 var request = require('request');
 
+// var User = mongoose.Schema({
+// 	author: String,
+// 	titles: [String]
+// });
 
 exports.name = function (req, res) {
   res.json({
