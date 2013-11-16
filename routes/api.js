@@ -21,7 +21,7 @@ exports.get_member_info = function(req, res) {
 	//grab params and set defaults
 	var member = objParams.member;
 	//pull relevant info from Sunlight Foundation
-	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d";	
+	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=50&page=1";	
 
 	request(sunlight, function(err, result) {
 		var results = JSON.parse(result.body).results;
