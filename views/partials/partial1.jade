@@ -1,30 +1,38 @@
-//p This is the partial for view 1.
-//p Name: 
-//input(type='text', ng-model='query')
-//button(ng-model='query', ng-click='search()') Search
-//p {{query}}
-//p(ng-repeat='person in people') {{person.first_name}} {{person.last_name}}
+.row
+  .col-lg-12
+    h1.page-header Search for Peeps
 
-form
-    label Name: 
-      input(type='text', ng-model='search.name')
-    br
-    label Gender: 
-      input(type='radio', ng-model='search.gender', value='M', ng-init="search.gender = ''")
-      | Male
-      input(type='radio', ng-model='search.gender', value='F')
-      | Female
-    br
-    label Political Affliliation: 
-      input(type='radio', ng-model='search.party', value='D', ng-init="search.party = ''")
-      | Democrat
-      input(type='radio', ng-model='search.party', value='R')
-      | Republican
-    br
-    label State: 
-      input(type='text', ng-model='search.state') 
-    //label State: 
-    //  input(type='text', ng-model='search.state')
-p(ng-repeat='person in people | filter:{name: search.name, party: search.party, state: search.state, gender: search.gender}') {{person.first_name}} {{person.last_name}}
+
+    .col-lg-3
+      form
+        label Name:
+          input(type='text', ng-model='search.name')
+        br
+        label Gender:
+          input(type='radio', ng-model='search.gender', value='M', ng-init="search.gender = ''")
+          | Male
+          input(type='radio', ng-model='search.gender', value='F')
+          | Female
+        br
+        label Political Affliliation:
+          input(type='radio', ng-model='search.party', value='D', ng-init="search.party = ''")
+          | Democrat
+          input(type='radio', ng-model='search.party', value='R')
+          | Republican
+        br
+        label State:
+          input(type='text', ng-model='search.state')
+
+    .col-lg-9
+      .col-lg-3.col-md-4.col-xs-6.thumb(ng-repeat='person in people | filter:{name: search.name, party: search.party, state: search.state, gender: search.gender}')
+        a.thumbnail(href='#')
+          img.img-responsive(src='http://placehold.it/400x300')
+        p {{person.name}}
+
 
 // so make a input box apear here to send a tweet
+
+
+    form
+    label Tweet Message:
+      input(type='text')
