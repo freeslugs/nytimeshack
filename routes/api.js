@@ -20,10 +20,14 @@ exports.get_member_info = function(req, res) {
 	//grab params and set defaults
 	var member = objParams.member;
 	//pull relevant info from Sunlight Foundation
-	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&query=" + member;	
+	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d";	
 
 	request(sunlight, function(err, result) {
-		var results = JSON.parse(result.body).results
+		var results = JSON.parse(result.body).results;
+
+		for (var i = results.length - 1; i >= 0; i--) {
+			results[i].name = results[i].first_name + " " + results[i].last_name;
+		};
 		res.json(results);
 	});
 };
