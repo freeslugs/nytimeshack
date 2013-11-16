@@ -45,10 +45,11 @@ if (app.get('env') === 'production') {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-app.get('/members', api.get_member_info);
+
 
 // JSON API
 app.get('/api/name', api.name);
+app.get('/members', api.get_member_info);
 
 // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);

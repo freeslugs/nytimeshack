@@ -18,11 +18,12 @@ exports.get_member_info = function(req, res) {
 	
 	
 	//pull relevant info from Sunlight Foundation
-	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&query=" + query;	
+	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d";	
 	
 	request(sunlight, function(err, result) {
 		var results = JSON.parse(result.body).results
-		
 		res.json(results);
 	});
-};	
+};
+
+
