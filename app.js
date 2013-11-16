@@ -83,8 +83,6 @@ if (app.get('env') === 'production') {
 };
 
 
-
-
 /**
  * Routes
  */
@@ -96,6 +94,7 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 app.get('/members', api.get_member_info);
 app.post('/posttweet', api.post_tweet);
+app.get('/image', api.image_url);
 
 // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
