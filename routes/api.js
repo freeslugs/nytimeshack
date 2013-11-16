@@ -40,8 +40,14 @@ exports.post_tweet = function(req, res) {
 		, access_token:         req.user.myToken
 		, access_token_secret:  req.user.myTokenSecret
 	})
-
-	T.post('statuses/update', { status: 'hello Mimoun!'}, function(err, reply) {
+	
+	var query = req._parsedUrl.query;
+	var objParams = queryString.parse(query);
+	
+	//grab params and set defaults
+	var message = objParams.message;
+ 
+	T.post('statuses/update', { status: message}, function(err, reply) {
 
 	})
 
