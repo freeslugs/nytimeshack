@@ -21,7 +21,7 @@ exports.get_member_info = function(req, res) {
 	//grab params and set defaults
 	var member = objParams.member;
 	//pull relevant info from Sunlight Foundation
-	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d";	
+	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=50&page=1";	
 
 	request(sunlight, function(err, result) {
 		var results = JSON.parse(result.body).results;
@@ -34,7 +34,7 @@ exports.get_member_info = function(req, res) {
 };
 
 exports.post_tweet = function(req, res) {
-		var T = new Twit({
+	var T = new Twit({
 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
 		, access_token:         req.user.myToken
@@ -43,7 +43,7 @@ exports.post_tweet = function(req, res) {
 
 		T.post('statuses/update', { status: 'hello Mimoun!'}, function(err, reply) {
 
-		})
+	})
 
 		
 };

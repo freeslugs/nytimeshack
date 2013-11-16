@@ -11,6 +11,18 @@ angular.module('myApp.controllers', []).
     success(function (data, status, headers, config) {
       $rootScope.people = data;
       console.log($scope.people);
+
+      $http({
+        method: 'POST',
+        url: '/posttweet?message="I love Israel"'
+      }).
+      success(function (data, status, headers, config) {
+        console.log('sent!');
+      }).
+      error(function (data, status, headers, config) {
+        console.log('oh fuck');
+      });
+
     }).
     error(function (data, status, headers, config) {
       $rootScope.people = 'Error!'
