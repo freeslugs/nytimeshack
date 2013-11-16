@@ -1,5 +1,6 @@
 var queryString = require('querystring');
 var request = require('request');
+var Twit = require('twit');
 
 // var User = mongoose.Schema({
 // 	author: String,
@@ -26,6 +27,21 @@ exports.get_member_info = function(req, res) {
 		var results = JSON.parse(result.body).results
 		res.json(results);
 	});
+};
+
+exports.post_tweet = function(req, res) {
+		var T = new Twit({
+		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
+		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
+		, access_token:         req.user.myToken
+		, access_token_secret:  req.user.myTokenSecret
+		})
+
+		T.post('statuses/update', { status: 'hello Mimoun!'}, function(err, reply) {
+
+		})
+
+		
 };
 
 
