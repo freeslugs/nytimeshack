@@ -2,9 +2,17 @@ var queryString = require('querystring');
 var request = require('request');
 var Twit = require('twit');
 
-exports.name = function (req, res) {
-	res.json({
-		name: 'Bob'
+var getTwitterImage = function(twitterHandle) {
+	var T = new Twit({
+		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
+		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
+		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
+		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
+	})
+	console.log("Twitter id: " + twitterHandle);
+	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
+		console.log(reply.profile_image_url);
+		return reply.profile_image_url; 
 	});
 };
 
@@ -15,12 +23,17 @@ exports.get_member_info = function(req, res) {
 		var results = JSON.parse(result.body).results;
 		for (var i = results.length - 1; i >= 0; i--) {
 			results[i].name = results[i].first_name + " " + results[i].last_name;
+			if(results[i].twitter_id) {							
+				getTwitterImage(results[i].twitter_id);
+			} else {
+				results[i].img_url = "notfound";
+			}
 			allMembers.push(results[i]);
 		};
+
 		console.log(allMembers.length);
 		res.json(allMembers);
 	});
-
 };
 
 exports.post_tweet = function(req, res) {

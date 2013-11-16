@@ -36,6 +36,14 @@ angular.module('myApp.controllers', []).
         console.log('oh fuck');
       });
 
+    $scope.image_url = function() {
+
+      $http({
+        method: 'GET',
+        url: 
+      })
+    }
+
     }
     
   }).
