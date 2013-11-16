@@ -22,7 +22,9 @@ form
       | Republican
     br
     label State: 
-      input(type='text', ng-model='search.state')
+      input(type='text', ng-model='search.state') 
     //label State: 
     //  input(type='text', ng-model='search.state')
 p(ng-repeat='person in people | filter:{name: search.name, party: search.party, state: search.state, gender: search.gender}') {{person.first_name}} {{person.last_name}}
+
+// so make a input box apear here to send a tweet

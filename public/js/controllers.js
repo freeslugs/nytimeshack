@@ -11,10 +11,23 @@ angular.module('myApp.controllers', []).
     success(function (data, status, headers, config) {
       $rootScope.people = data;
       console.log($scope.people);
+    }).
+    error(function (data, status, headers, config) {
+      $rootScope.people = 'Error!'
+    });
+  }).
+  controller('MyCtrl1', function ($scope, $http) {
+    // write Ctrl here
+    
+    //this is the function to post tweet
+    $scope.posttweet = function() {
+
+      //make sure to get the twitter handle from the people object
 
       $http({
         method: 'POST',
         url: '/posttweet?message="I love Israel"'
+        //above you put the message
       }).
       success(function (data, status, headers, config) {
         console.log('sent!');
@@ -23,13 +36,7 @@ angular.module('myApp.controllers', []).
         console.log('oh fuck');
       });
 
-    }).
-    error(function (data, status, headers, config) {
-      $rootScope.people = 'Error!'
-    });
-  }).
-  controller('MyCtrl1', function ($scope, $http) {
-    // write Ctrl here
+    }
     
   }).
   controller('MyCtrl2', function ($scope) {
