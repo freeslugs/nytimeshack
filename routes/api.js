@@ -16,8 +16,6 @@ exports.get_member_info = function(req, res) {
 	//grab params and set defaults
 	var query = objParams.q;
 	
-	//variables to pull
-	var first_name, last_name, twitter_id, facebook_id, party, state;
 	
 	//pull relevant info from Sunlight Foundation
 	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&query=" + query;	
