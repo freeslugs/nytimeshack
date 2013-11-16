@@ -8,50 +8,16 @@ exports.name = function (req, res) {
 	});
 };
 
-
 exports.get_member_info = function(req, res) {
-	//pull relevant info from Sunlight Foundation
-	
-	
-
 	var allMembers = [];
-	var page = 1;
 	var count = 0;
-	var perPage = 50;
-	
-	var reachedEnd = true;
-	var sunlight = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=50&page=" + page;
-	
-	request(sunlight, function(err, result) {
-
-	var results = JSON.parse(result.body).results;
-	console.log(results);
-	console.log(results.length);
-
-		for (var i = 0;  i <= results.length - 1; i++) {
-			console.log("i: " + i);
-			results[i].name = results[i].first_name + " " + results[i].last_name;
-			
-			allMembers.push(results[i].first_name);
-			
-			if( i == 49){
-				page = page + 1;
-				break;
-			}
+	var totalLength = 537;
+	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
+	request(url, function(err, result) {
+		var results = JSON.parse(result.body).results;
+		for (var i = results.length - 1; i >= 0; i--) {
+			console.log(results[i].first_name);
 		};
-
-			
-
-			var totalPages = i / perPage;
-			console.log("total pages: " + totalPages);
-			if(page == totalPages){
-				break;
-			}
-		};	
-
-	console.log(allMembers);	
-	console.log(allMembers.length);
-	console.log(page);
 	});
 };
 
