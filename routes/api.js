@@ -25,11 +25,6 @@ exports.get_member_info = function(req, res) {
 	request(sunlight, function(err, result) {
 		var results = JSON.parse(result.body).results
 		
-		first_name = results[0].first_name;
-		last_name = results[0].last_name;
-
-		console.log(last_name);
-		console.log(first_name);
 		res.json(results);
 	});
 };	
