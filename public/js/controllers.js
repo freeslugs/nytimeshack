@@ -4,16 +4,16 @@
 
 angular.module('myApp.controllers', []).
   controller('AppCtrl', function ($scope, $http) {
-
     $http({
       method: 'GET',
-      url: '/api/name'
+      url: '/members?party=d'
     }).
     success(function (data, status, headers, config) {
-      $scope.name = data.name;
+      $scope.people = data;
+      console.log($scope.people);
     }).
     error(function (data, status, headers, config) {
-      $scope.name = 'Error!'
+      $scope.people = 'Error!'
     });
 
   }).
