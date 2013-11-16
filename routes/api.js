@@ -8,9 +8,9 @@ var Twit = require('twit');
 // });
 
 exports.name = function (req, res) {
-  res.json({
-  	name: 'Bob'
-  });
+	res.json({
+		name: 'Bob'
+	});
 };
 
 exports.get_member_info = function(req, res) {
@@ -39,13 +39,13 @@ exports.post_tweet = function(req, res) {
 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
 		, access_token:         req.user.myToken
 		, access_token_secret:  req.user.myTokenSecret
-		})
+	})
 
-		T.post('statuses/update', { status: 'hello Mimoun!'}, function(err, reply) {
+	T.post('statuses/update', { status: 'hello Mimoun!'}, function(err, reply) {
 
 	})
 
-		
+	
 };
 
 

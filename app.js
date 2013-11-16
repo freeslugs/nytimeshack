@@ -24,11 +24,11 @@
 //   have a database of user records, the complete Twitter profile is serialized
 //   and deserialized.
 passport.serializeUser(function(user, done) {
-  done(null, user);
+	done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+	done(null, obj);
 });
 
 /**
@@ -46,11 +46,11 @@ function(token, tokenSecret, profile, done) {
     // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
-	console.log(profile.id);
-	console.log(token);
-	console.log(tokenSecret);
+console.log(profile.id);
+console.log(token);
+console.log(tokenSecret);
 
-	return done(null, {myToken: token, myTokenSecret: tokenSecret, id: profile.id});
+return done(null, {myToken: token, myTokenSecret: tokenSecret, id: profile.id});
 }
 ));
 
@@ -107,7 +107,7 @@ app.get('/auth/twitter',
 app.get('/auth/twitter/callback', 
 	passport.authenticate('twitter', { failureRedirect: '/login' }),
 	function(req, res) {
-   
+		
     // Successful authentication, redirect home.
     console.log(req.user);
     res.redirect('/');
