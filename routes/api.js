@@ -3,21 +3,6 @@ var request = require('request');
 var Twit = require('twit');
 var scraper = require('scraper');
 
-
-var mongourl = process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  'mongodb://localhost/nydb'; 
-mongoose.connect(mongourl);
-var db = mongoose.connection;
-
-var imageSchema = mongoose.Schema({
-	image_url: String	
-});
-
-
-var imageURL = db.model('imageURL', imageSchema);
-
-
 // var getTwitterImage = function(twitterHandle) {
 // 	var T = new Twit({
 // 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
