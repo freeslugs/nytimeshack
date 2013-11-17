@@ -17,7 +17,6 @@ exports.get_member_info = function(req, res) {
 			results[i].name = results[i].first_name + " " + results[i].last_name;
 			allMembers.push(results[i]);
 		};
-		console.log(allMembers.length);
 		res.json(allMembers);
 	});
 
