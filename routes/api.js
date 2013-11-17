@@ -3,21 +3,22 @@ var request = require('request');
 var Twit = require('twit');
 var scraper = require('scraper');
 
-// var getTwitterImage = function(twitterHandle) {
-// 	var T = new Twit({
-// 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
-// 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
-// 		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
-// 		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
-// 	})
-// 	console.log("Twitter id: " + twitterHandle);
-// 	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
-// 		console.log(reply.profile_image_url);
-// 		return reply.profile_image_url; 
+var getTwitterImage = function(twitterHandle) {
+	var T = new Twit({
+		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
+		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
+		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
+		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
+	})
+	console.log("Twitter id: " + twitterHandle);
+	setTimeout(function, milliseconds);
+	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
+		console.log(reply.profile_image_url);
+		return reply.profile_image_url; 
 
 
-// 	});
-// };
+	});
+};
 
 /** Scrapping */
 // var getTwitterImage = function(twitterHandle) {
@@ -35,9 +36,9 @@ var scraper = require('scraper');
 
 /** Using Google */
 
-var getTwitterImage = function(memberName) {
+// var getTwitterImage = function(memberName) {
 
-}
+// }
 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
