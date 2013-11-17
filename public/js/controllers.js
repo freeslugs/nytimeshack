@@ -26,7 +26,7 @@ angular.module('myApp.controllers', []).
 
       $http({
         method: 'POST',
-        url: "/posttweet?message='" + message + "'&twitterhandle='" + twitterhandle + "'"
+        url: "/posttweet?message='" + message + "'&twitterhandle=" + twitterhandle
         //above you put the message
       }).
       success(function (data, status, headers, config) {
