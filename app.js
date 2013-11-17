@@ -89,6 +89,7 @@ if (app.get('env') === 'production') {
 
 // serve index and view partials
 app.get('/', routes.index);
+app.get('/home', routes.home);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
@@ -109,7 +110,7 @@ app.get('/auth/twitter/callback',
 		
     // Successful authentication, redirect home.
     console.log(req.user);
-    res.redirect('/');
+    res.redirect('/home');
 });
 
 /**
