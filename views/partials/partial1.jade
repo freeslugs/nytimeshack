@@ -1,8 +1,10 @@
 .row
   .col-lg-12
     h1.page-header Search for Peeps
+    label Tweet to All: 
+      input(type='text', ng-model='message')
 
-
+    hr
     .col-lg-3
       form
         label Name:
@@ -37,22 +39,13 @@
 
     .col-lg-9
       .col-lg-3.col-md-4.col-xs-6.thumb(ng-repeat='person in people | filter:{name: search.name, party: search.party, state: search.state, gender: search.gender, chamber: search.chamber}')
+
+        label Message: 
+            input(type='text', ng-model='message')
+          button.btn-primary(type="submit") Send
         .thumbnail(ng-show="!form")
           img.img-responsive(src='http://placehold.it/400x300')
           //{{person.img_url}}
           p {{person.name}}
           button.btn(ng-click='form = true') Tweet
         form.thumbnail(width="400", height="300", ng-submit='posttweet(person.twitter_id, message); form = false', ng-show="form")
-          label Message: 
-            input(type='text', ng-model='message')
-          button.btn-primary(type="submit") Send
-
-
-
-
-// so make a input box apear here to send a tweet
-
-
-    form
-    label Tweet Message:
-      input(type='text')
