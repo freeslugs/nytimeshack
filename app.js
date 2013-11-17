@@ -38,8 +38,8 @@ passport.deserializeUser(function(obj, done) {
 
 
 passport.use(new TwitterStrategy({
-	consumerKey: "rKxEEYe0OXdNC2Wh2qlXDA",
-	consumerSecret: "JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw",
+	consumerKey: "MG7QrrtrOx6nig4610Kh1g",
+	consumerSecret: "CDbMh9omMGBvHUnl8uwlkQOtZCwMRR3ZXt3NY9KSo",
 	callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
 },
 function(token, tokenSecret, profile, done) {
