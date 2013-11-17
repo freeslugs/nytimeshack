@@ -1,7 +1,8 @@
 var queryString = require('querystring');
 var request = require('request');
 var Twit = require('twit');
-var scraper = require('scraper');
+//var scraper = require('scraper');
+//var cheerio = require("cheerio");
 
 // var getTwitterImage = function(twitterHandle) {
 // 	var T = new Twit({
@@ -20,24 +21,33 @@ var scraper = require('scraper');
 // };
 
 /** Scrapping */
-// var getTwitterImage = function(twitterHandle) {
-// 	scraper('http://twitter.com/' + twitterHandle, function(err, jQuery) {
-//     if (err) {throw err}
-
-//     console.log($('.profile-picture'));
-//     // 	.each(function() {
-//     //     console.log(jQuery(this).text().trim()+'\n');
-//     // });
-// });
-// }
-
+/*var getTwitterImage = function(twitterHandle) {
+	scraper('http://twitter.com/' + twitterHandle, function(err, jQuery) {
+	console.log(result);
+    console.log(jQuery('.profile-picture').attr("src"));
+	return jQuery('.profile-picture').attr("src");
+    // 	.each(function() {
+    //     console.log(jQuery(this).text().trim()+'\n');
+    // });
+});
+}*/
+var getTwitterImage = function(twitterHandle) {
+/*	var url = 'http://twitter.com/' + twitterHandle;
+	var img_url;
+	request(url, function(err, resp, body){
+		$ = cheerio.load(body);
+		img_url = $('.profile-picture')[0].src;
+		console.log(img_url);
+		return img_url;
+	});*/
+};
 
 
 /** Using Google */
 
-var getTwitterImage = function(memberName) {
+/*var getTwitterImage = function(memberName) {
 
-}
+}*/
 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
