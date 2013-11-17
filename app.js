@@ -14,6 +14,8 @@
 
 
  var app = module.exports = express();
+	app.use(express.logger());
+
 
 
 // Passport session setup.
