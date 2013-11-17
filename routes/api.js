@@ -1,20 +1,58 @@
 var queryString = require('querystring');
 var request = require('request');
 var Twit = require('twit');
+var scraper = require('scraper');
 
-var getTwitterImage = function(twitterHandle) {
-	var T = new Twit({
-		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
-		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
-		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
-		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
-	})
-	console.log("Twitter id: " + twitterHandle);
-	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
-		console.log(reply.profile_image_url);
-		return reply.profile_image_url; 
-	});
-};
+
+var mongourl = process.env.MONGOLAB_URI || 
+  process.env.MONGOHQ_URL || 
+  'mongodb://localhost/nydb'; 
+mongoose.connect(mongourl);
+var db = mongoose.connection;
+
+var imageSchema = mongoose.Schema({
+	image_url: String	
+});
+
+
+var imageURL = db.model('imageURL', imageSchema);
+
+
+// var getTwitterImage = function(twitterHandle) {
+// 	var T = new Twit({
+// 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
+// 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
+// 		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
+// 		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
+// 	})
+// 	console.log("Twitter id: " + twitterHandle);
+// 	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
+// 		console.log(reply.profile_image_url);
+// 		return reply.profile_image_url; 
+
+
+// 	});
+// };
+
+/** Scrapping */
+// var getTwitterImage = function(twitterHandle) {
+// 	scraper('http://twitter.com/' + twitterHandle, function(err, jQuery) {
+//     if (err) {throw err}
+
+//     console.log($('.profile-picture'));
+//     // 	.each(function() {
+//     //     console.log(jQuery(this).text().trim()+'\n');
+//     // });
+// });
+// }
+
+
+
+/** Using Google */
+
+var getTwitterImage = function(memberName) {
+
+}
 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
@@ -49,8 +87,11 @@ exports.post_tweet = function(req, res) {
 
 //grab params and set defaults
 var message = objParams.message;
+var twitterhandle = objParams.twitterhandle;
 
-T.post('statuses/update', { status: message}, function(err, reply) {
+var finalmessage = "@" + twitterhandle + " " + message;
+
+T.post('statuses/update', { status: finalmessage }, function(err, reply) {
 })
 
 };
