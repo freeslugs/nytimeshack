@@ -11,8 +11,9 @@ var getTwitterImage = function(twitterHandle) {
 		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
 	})
 	console.log("Twitter id: " + twitterHandle);
-	setTimeout(function, milliseconds);
+
 	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
+		if(reply.profile_image_url == ) 
 		console.log(reply.profile_image_url);
 		return reply.profile_image_url; 
 
