@@ -3,6 +3,12 @@
  */
 
  exports.index = function(req, res){
+ 	res.render('landing');
+ 	console.log(req.user);
+ };
+
+
+ exports.home = function(req, res){
  	res.render('index');
  	console.log(req.user);
  };
