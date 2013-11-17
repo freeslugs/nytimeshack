@@ -68,8 +68,6 @@ exports.get_member_info = function(req, res) {
 			}
 			allMembers.push(results[i]);
 		};
-
-		console.log(allMembers.length);
 		res.json(allMembers);
 	});
 };
