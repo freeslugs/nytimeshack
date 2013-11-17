@@ -4,23 +4,28 @@ var Twit = require('twit');
 //var scraper = require('scraper');
 //var cheerio = require("cheerio");
 
-var getTwitterImage = function(twitterHandle) {
-	var T = new Twit({
-		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
-		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
-		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
-		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
-	})
-	console.log("Twitter id: " + twitterHandle);
+// var getTwitterImage = function(twitterHandle) {
+// 	var T = new Twit({
+// 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
+// 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
+// 		, access_token:         "253580597-C67jElQukNRNme53alW9DbGAfVx7CakKdvcdPMQW"
+// 		, access_token_secret:  "QZowsMHXYay8YzuylHuFf0NHgeiTyN7adPtKMrETdKOfR"
+// 	})
+// 	console.log("Twitter id: " + twitterHandle);
 
-	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
-		if(reply.profile_image_url == ) 
-		console.log(reply.profile_image_url);
-		return reply.profile_image_url; 
-
-
-	});
-};
+// 	T.get('users/show', { screen_name: twitterHandle}, function(err, reply) {
+// 		if(err){
+// 			console.log(err);
+// 			return null;
+// 		}
+// 		if(reply.hasOwnProperty("profile_image_url")) {
+// 			console.log(reply.profile_image_url);
+// 			return reply.profile_image_url; 
+// 		} else {
+// 			return null;
+// 		}
+// 	});
+// };
 
 /** Scrapping */
 /*var getTwitterImage = function(twitterHandle) {
@@ -33,7 +38,7 @@ var getTwitterImage = function(twitterHandle) {
     // });
 });
 }*/
-var getTwitterImage = function(twitterHandle) {
+// var getTwitterImage = function(twitterHandle) {
 /*	var url = 'http://twitter.com/' + twitterHandle;
 	var img_url;
 	request(url, function(err, resp, body){
@@ -42,20 +47,19 @@ var getTwitterImage = function(twitterHandle) {
 		console.log(img_url);
 		return img_url;
 	});*/
-};
+// };
 
 
 /** Using Google */
 
-<<<<<<< HEAD
 /*var getTwitterImage = function(memberName) {
 
 }*/
-=======
+
 // var getTwitterImage = function(memberName) {
 
 // }
->>>>>>> 93e79f3e53a1fc6368e2f2f35a69ddb58f974624
+
 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
