@@ -77,7 +77,7 @@ exports.get_committee_info = function(req, res) {
 }
 
 
-
+ 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
 	var allMembers = [];
@@ -111,9 +111,11 @@ exports.post_tweet = function(req, res) {
 var message = objParams.message;
 var twitterhandles = objParams.twitterhandles;
 
-	for (var i = twitterhandles.length - 1; i >= 0; i--) {
+var parsedHandles = twitterhandles.split(",");
 
-		var finalmessage = "@" + twitterhandles[i] + " " + message;
+	for (var i = parsedHandles.length - 1; i >= 0; i--) {
+
+		var finalmessage = "@" + parsedHandles[i] + " " + message;
 		console.log(finalmessage);
 		T.post('statuses/update', { status: finalmessage }, function(err, reply) {
 			console.log(reply);
