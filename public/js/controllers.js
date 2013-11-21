@@ -37,7 +37,7 @@ angular.module('myApp.controllers', []).
         method: 'POST',
         //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
         //data: xsrf,
-        url: "/posttweet?message='" + message + "'&twitterhandles=" + $scope.twitterhandles
+        url: "/posttweet?message=" + message + "&twitterhandles=" + $scope.twitterhandles
         //above you put the message
       }).
       success(function (data, status, headers, config) {
