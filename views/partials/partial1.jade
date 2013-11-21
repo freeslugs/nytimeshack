@@ -1,9 +1,10 @@
 .row
   .col-lg-12
     h1.page-header Search for Peeps
-    label Tweet to All: 
-      input(type='text', ng-model='message')
-
+    form.thumbnail(ng-submit='posttweet(message)')
+      label Tweet to All: 
+        input(type='text', ng-model='message')
+      button.btn-primary(type="submit") Send
     hr
     .col-lg-3
       form
@@ -44,7 +45,7 @@
           //{{person.img_url}}
           p {{person.name}}
           button.btn(ng-click='form = true') Tweet
-        form.thumbnail(width="400", height="300", ng-submit='posttweet(person.twitter_id, message); form = false', ng-show="form")
+        form.thumbnail(width="400", height="300", ng-submit='posttweet(message, person.twitter_id); form = false', ng-show="form")
           label Message: 
             input(type='text', ng-model='message')
           button.btn-primary(type="submit") Send

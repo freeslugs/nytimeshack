@@ -22,11 +22,22 @@ angular.module('myApp.controllers', []).
 
     $scope.message = '';
     //this is the function to post tweet
-    $scope.posttweet = function(twitterhandle, message) {
-
+    $scope.posttweet = function(message, twitterhandle) {
+      $scope.twitterhandles = "";
+      if(twitterhandle) {
+        console.log("just one " + $scope.twitterhandles);
+      }
+      for (var i = $scope.people.length - 1; i >= 0; i--) {
+        $scope.twitterhandles += $scope.people[i].twitter_id + ",";
+      };
+      console.log("mutlple " + $scope.twitterhandles);
+      
+      var xsrf = $.param($scope.twitterhandles);
       $http({
         method: 'POST',
-        url: "/posttweet?message='" + message + "'&twitterhandle=" + twitterhandle
+        //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        //data: xsrf,
+        url: "/posttweet?message='" + message + "'&twitterhandles=" + $scope.twitterhandles
         //above you put the message
       }).
       success(function (data, status, headers, config) {
