@@ -61,6 +61,22 @@ var Twit = require('twit');
 
 // }
 
+exports.get_committee_info = function(req, res) {
+	// get url string and convert to json object
+	var query = req._parsedUrl.query;
+	var objParams = queryString.parse(query);
+
+	//grab params and set defaults
+	var query = objParams.q;
+	var committeeURL = "http://congress.api.sunlightfoundation.com/committees?apikey=356d66c74a74458295c7173ab534917d&query=" + query;
+
+	request(committeeURL, function(err, result){
+		var myResult = JSON.parse(result.body);
+		res.json(myResult);
+	})
+}
+
+
 
 exports.get_member_info = function(req, res) {
 	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
@@ -95,20 +111,14 @@ exports.post_tweet = function(req, res) {
 var message = objParams.message;
 var twitterhandles = objParams.twitterhandles;
 
-for (var i = twitterhandles.length - 1; i >= 0; i--) {
+	for (var i = twitterhandles.length - 1; i >= 0; i--) {
 
-	var finalmessage = "@" + twitterhandles[i] + " " + message;
-	console.log(finalmessage);
-	T.post('statuses/update', { status: finalmessage }, function(err, reply) {
-		console.log(reply);
-	})
-
-};
-
-
-
-
-
+		var finalmessage = "@" + twitterhandles[i] + " " + message;
+		console.log(finalmessage);
+		T.post('statuses/update', { status: finalmessage }, function(err, reply) {
+			console.log(reply);
+		})
+	};
 
 };
 
