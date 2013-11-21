@@ -79,7 +79,17 @@ exports.get_committee_info = function(req, res) {
 
  
 exports.get_member_info = function(req, res) {
-	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all";
+	// get url string and convert to json object
+	var query = req._parsedUrl.query;
+	var objParams = queryString.parse(query);
+
+	//grab params and set defaults
+	var party = objParams.party;
+	var gender = objParams.gender;
+	var state = objParams.state;
+	var chamber = objParams.chamber;
+
+	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all&party=" + party +"&state=" + state +"&gender=" + gender +"&chamber=" + chamber ;
 	var allMembers = [];
 	request(url, function(err, result) {
 		var results = JSON.parse(result.body).results;
