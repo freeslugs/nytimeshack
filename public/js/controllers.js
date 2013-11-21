@@ -22,21 +22,20 @@ angular.module('myApp.controllers', []).
 
     $scope.message = '';
 
-    $scope.select = [];
-    $scope.selected = function(index) {
-      $scope.select.push($scope.people[index]);
+    $scope.selectedPeople = [];
+    $scope.selectPerson = function(index) {
+      $scope.selectedPeople.push($scope.people[index]);
     }
     //this is the function to post tweet
     $scope.posttweet = function(message) {
       $scope.twitterhandles = "";
-      if($scope.select.length == 0) {
-        $scope.select = $scope.people;
-        console.log($scope.select)
+      if($scope.selectedPeople.length == 0) {
+        $scope.selectedPeople = $scope.people;
       }
-      for (var i = $scope.select.length - 1; i >= 0; i--) {
-        console.log($scope.select[i]);
-        if($scope.select[i].twitter_id) {
-          $scope.twitterhandles += $scope.select[i].twitter_id + ",";
+      for (var i = $scope.selectedPeople.length - 1; i >= 0; i--) {
+        console.log($scope.selectedPeople);
+        if($scope.selectedPeople[i].twitter_id) {
+          $scope.twitterhandles += $scope.selectedPeople[i].twitter_id + ",";
         }
       };
       $http({

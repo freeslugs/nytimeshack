@@ -117,9 +117,9 @@ var parsedHandles = twitterhandles.split(",");
 
 		var finalmessage = "@" + parsedHandles[i] + " " + message;
 		console.log(finalmessage);
-		T.post('statuses/update', { status: finalmessage }, function(err, reply) {
+		/*T.post('statuses/update', { status: finalmessage }, function(err, reply) {
 			console.log(reply);
-		})
+		})*/
 	};
 
 };
