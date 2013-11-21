@@ -93,12 +93,22 @@ exports.post_tweet = function(req, res) {
 
 //grab params and set defaults
 var message = objParams.message;
-var twitterhandle = objParams.twitterhandle;
+var twitterhandles = objParams.twitterhandles;
 
-var finalmessage = "@" + twitterhandle + " " + message;
+for (var i = twitterhandles.length - 1; i >= 0; i--) {
 
-T.post('statuses/update', { status: finalmessage }, function(err, reply) {
-})
+	var finalmessage = "@" + twitterhandles[i] + " " + message;
+	console.log(finalmessage);
+	T.post('statuses/update', { status: finalmessage }, function(err, reply) {
+		console.log(reply);
+	})
+
+};
+
+
+
+
+
 
 };
 
