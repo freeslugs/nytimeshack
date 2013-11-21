@@ -9,37 +9,38 @@
     .col-lg-3
       form
         label Name:
-          input(type='text', ng-model='search.name')
+          input(type='text', ng-model='search.name', ng-change="change()")
         br
         label Gender:
-          input(type='radio', ng-model='search.gender', value='')
+          input(type='radio', ng-model='search.gender', value='', ng-change="change()")
           | Any
-          input(type='radio', ng-model='search.gender', value='M', ng-init="search.gender = ''")
+          input(type='radio', ng-model='search.gender', value='M', ng-change="change()", ng-init="search.gender = ''")
           | Male
-          input(type='radio', ng-model='search.gender', value='F')
+          input(type='radio', ng-model='search.gender', value='F', ng-change="change()")
           | Female
         br
         label Political Affliliation:
-          input(type='radio', ng-model='search.party', value='', ng-init="search.party = ''")
+          input(type='radio', ng-model='search.party', value='', ng-change="change()", ng-init="search.party = ''")
           | Any
-          input(type='radio', ng-model='search.party', value='D', ng-init="search.party = ''")
+          input(type='radio', ng-model='search.party', value='D', ng-change="change()", ng-init="search.party = ''")
           | Democrat
-          input(type='radio', ng-model='search.party', value='R')
+          input(type='radio', ng-model='search.party', value='R', ng-change="change()")
           | Republican
         br
         label State:
-          select(ng-model='search.state')
+          select(ng-model='search.state', ng-change="change()")
             option(ng-repeat="state in states", value="{{state}}")
               {{state}}
         br
         label Chamber:
-          input(type='text', ng-model='search.chamber')
+          input(type='text', ng-model='search.chamber', ng-change="change()")
         br
           
 
 
     .col-lg-9
-      .col-lg-3.col-md-4.col-xs-6.thumb(ng-repeat="person in people | filter:{name: search.name||'', party: search.party||'', state: search.state||'', gender: search.gender||'', chamber: search.chamber||''}")
+      .col-lg-3.col-md-4.col-xs-6.thumb(ng-repeat="person in people") 
+        //| filter:{name: search.name||'', party: search.party||'', state: search.state||'', gender: search.gender||'', chamber: search.chamber||''}"
         .thumbnail(ng-show="!form")
           img.img-responsive(src='http://placehold.it/400x300')
           //{{person.img_url}}
