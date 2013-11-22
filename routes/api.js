@@ -89,8 +89,9 @@ exports.get_member_info = function(req, res) {
 	var state = objParams.state;
 	var chamber = objParams.chamber;
 
-	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all&party=" + party +"&state=" + state +"&gender=" + gender +"&chamber=" + chamber ;
+	var url = "http://congress.api.sunlightfoundation.com/legislators?apikey=356d66c74a74458295c7173ab534917d&per_page=all&party=" + party +"&state=" + state +"&gender=" + gender +"&chamber=" + chamber; 
 	var allMembers = [];
+	
 	request(url, function(err, result) {
 		var results = JSON.parse(result.body).results;
 		for (var i = results.length - 1; i >= 0; i--) {

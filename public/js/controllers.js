@@ -14,6 +14,11 @@ angular.module('myApp.controllers', []).
     $scope.message = '';
 
     $scope.change = function() { 
+      /*var param = {};
+      for(var property in $scope.search) {
+        param[property] = $scope.search[property];
+      }*/
+
       $http({
         method: 'GET',
         url: '/members',
@@ -31,20 +36,27 @@ angular.module('myApp.controllers', []).
     /*$scope.selectedPeople = [];
     $scope.selectPerson = function(index) {
       $scope.selectedPeople.push($scope.people[index]);
-    }
+    }*/
     //this is the function to post tweet*/
-    $scope.posttweet = function(message) {
-      console.log($scope.people);
+    /*$scope.testTwitterHandle = function(message, twitterhandle) {
+      console.log(twitterhandle);
+    }*/
+
+    $scope.posttweet = function(message, twitterhandle) {
+      $scope.selectedPeople = [];
+      //console.log($scope.people);
       $scope.twitterhandles = "";
-      /*if($scope.selectedPeople.length == 0) {
+      if (twitterhandle) {
+        $scope.selectedPeople.push(twitterhandle);
+      } else {
         $scope.selectedPeople = $scope.people;
-      }*/
-      /*for (var i = $scope.selectedPeople.length - 1; i >= 0; i--) {
+      }
+      for (var i = $scope.selectedPeople.length - 1; i >= 0; i--) {
         console.log($scope.selectedPeople);
         if($scope.selectedPeople[i].twitter_id) {
           $scope.twitterhandles += $scope.selectedPeople[i].twitter_id + ",";
         }
-      };*/
+      };
       $http({
         method: 'POST',
         //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
