@@ -54,7 +54,9 @@ angular.module('myApp.controllers', []).
       for (var i = $scope.selectedPeople.length - 1; i >= 0; i--) {
         console.log($scope.selectedPeople);
         if($scope.selectedPeople[i].twitter_id) {
-          $scope.twitterhandles += $scope.selectedPeople[i].twitter_id + ",";
+          $scope.twitterhandles += $scope.selectedPeople[i].twitter_id;
+          //if its not the last person, add a ","
+          if(i + 1 < $scope.selectedPeople) $scope.twitterhandles += ","; 
         }
       };
       $http({
