@@ -13,11 +13,18 @@ angular.module('myApp.controllers', []).
 
     $scope.message = '';
 
+    $scope.search = {
+      'gender': '',
+      'chamber': '',
+      'party': ''
+    }
+
     $scope.submit = function() { 
       /*var param = {};
       for(var property in $scope.search) {
         param[property] = $scope.search[property];
       }*/
+      $scope.people = [];
       $scope.loading = true;
       console.log('submit');
       $http({
@@ -46,19 +53,17 @@ angular.module('myApp.controllers', []).
 
     $scope.posttweet = function(message, twitterhandle) {
       $scope.selectedPeople = [];
-      //console.log($scope.people);
       $scope.twitterhandles = "";
       if (twitterhandle) {
         $scope.selectedPeople.push(twitterhandle);
       } else {
         $scope.selectedPeople = $scope.people;
       }
+      //console.log('total length ' + $scope.selectedPeople.length);
       for (var i = $scope.selectedPeople.length - 1; i >= 0; i--) {
-        console.log($scope.selectedPeople);
+        //console.log($scope.selectedPeople);
         if($scope.selectedPeople[i].twitter_id) {
-          $scope.twitterhandles += $scope.selectedPeople[i].twitter_id;
-          //if its not the last person, add a ","
-          if(i + 1 < $scope.selectedPeople) $scope.twitterhandles += ","; 
+          $scope.twitterhandles += $scope.selectedPeople[i].twitter_id + ","; 
         }
       };
       $http({
@@ -70,6 +75,7 @@ angular.module('myApp.controllers', []).
       }).
       success(function (data, status, headers, config) {
         console.log('sent!');
+        $scope.message = '';
       }).
       error(function (data, status, headers, config) {
         console.log('not good');

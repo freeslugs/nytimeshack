@@ -125,16 +125,18 @@ var twitterhandles = objParams.twitterhandles;
 var parsedHandles = twitterhandles.split(",");
 
 	for (var i = parsedHandles.length - 1; i >= 0; i--) {
+		if(parsedHandles[i]) {
 
-		var finalmessage = "@" + parsedHandles[i] + " " + message;
-		console.log(finalmessage);
-		/*T.post('statuses/update', { status: finalmessage }, function(err, reply) {
-			console.log(reply);
-		})*/
+			var finalmessage = "@" + parsedHandles[i] + " " + message;
+			console.log(finalmessage);
+			T.post('statuses/update', { status: finalmessage }, function(err, reply) {
+				console.log(reply);
+			});
+		}
+
 	};
 
 };
-
 
 exports.image_url = function(req, res) {
 

@@ -11,18 +11,18 @@
         label Gender:
           input(type='radio', ng-model='search.gender', value='')
           | Any
-          input(type='radio', ng-model='search.gender', value='M', ng-init="search.gender = ''")
+          input(type='radio', ng-model='search.gender', value='M')
           | Male
           input(type='radio', ng-model='search.gender', value='F')
           | Female
         br
         label Political Affliliation:
-          input(type='radio', ng-model='search.party', value='', ng-init="search.party = ''")
+          input(type='radio', ng-model='search.party', value='')
           | Any
-          input(type='radio', ng-model='search.party', value='D', ng-init="search.party = ''")
-          | Democrat
+          input(type='radio', ng-model='search.party', value='D')
+          | Dem
           input(type='radio', ng-model='search.party', value='R')
-          | Republican
+          | Rep
         br
         label State:
           select(ng-model='search.state')
