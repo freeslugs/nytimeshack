@@ -3,7 +3,7 @@
  */
 
  exports.index = function(req, res){
- 	res.render('landing');
+ 	res.render('partials/landing');
  	console.log(req.user);
  };
 
