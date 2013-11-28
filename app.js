@@ -53,9 +53,9 @@ function(token, tokenSecret, profile, done) {
     // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
-console.log(profile.id);
-console.log(token);
-console.log(tokenSecret);
+// console.log(profile.id);
+// console.log(token);
+// console.log(tokenSecret);
 
 return done(null, {myToken: token, myTokenSecret: tokenSecret, id: profile.id});
 }
