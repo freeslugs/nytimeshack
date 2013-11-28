@@ -1,7 +1,7 @@
 {
 	"name": "tweetthepress",
 	"version": "0.0.1",
-	//"private": true,
+	"private": false,
 	"dependencies": {
 		"express": "~3.2.6",
 		"jade": "~0.31.2",
