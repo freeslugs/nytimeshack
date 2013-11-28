@@ -7,35 +7,35 @@
       button.btn-primary(type="submit") Send
     hr
     .col-lg-3
-      form
+      form(ng-submit="submit()")
         label Gender:
-          input(type='radio', ng-model='search.gender', value='', ng-change="change()")
+          input(type='radio', ng-model='search.gender', value='')
           | Any
-          input(type='radio', ng-model='search.gender', value='M', ng-change="change()", ng-init="search.gender = ''")
+          input(type='radio', ng-model='search.gender', value='M', ng-init="search.gender = ''")
           | Male
-          input(type='radio', ng-model='search.gender', value='F', ng-change="change()")
+          input(type='radio', ng-model='search.gender', value='F')
           | Female
         br
         label Political Affliliation:
-          input(type='radio', ng-model='search.party', value='', ng-change="change()", ng-init="search.party = ''")
+          input(type='radio', ng-model='search.party', value='', ng-init="search.party = ''")
           | Any
-          input(type='radio', ng-model='search.party', value='D', ng-change="change()", ng-init="search.party = ''")
+          input(type='radio', ng-model='search.party', value='D', ng-init="search.party = ''")
           | Democrat
-          input(type='radio', ng-model='search.party', value='R', ng-change="change()")
+          input(type='radio', ng-model='search.party', value='R')
           | Republican
         br
         label State:
-          select(ng-model='search.state', ng-change="change()")
+          select(ng-model='search.state')
             option(ng-repeat="state in states", value="{{state}}")
               {{state}}
         br
         label Chamber:
-          input(type='text', ng-model='search.chamber', ng-change="change()")
+          input(type='text', ng-model='search.chamber')
         br
-          
-
+        button.btn-primary(type="submit") Submit
 
     .col-lg-9
+      p(ng-show="loading") Loading...
       .col-lg-3.col-md-4.col-xs-6.thumb(ng-repeat="person in people") 
         //| filter:{name: search.name||'', party: search.party||'', state: search.state||'', gender: search.gender||'', chamber: search.chamber||''}"
         .thumbnail(ng-show="!form")

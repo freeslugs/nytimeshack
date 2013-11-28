@@ -13,12 +13,13 @@ angular.module('myApp.controllers', []).
 
     $scope.message = '';
 
-    $scope.change = function() { 
+    $scope.submit = function() { 
       /*var param = {};
       for(var property in $scope.search) {
         param[property] = $scope.search[property];
       }*/
-
+      $scope.loading = true;
+      console.log('submit');
       $http({
         method: 'GET',
         url: '/members',
@@ -27,6 +28,7 @@ angular.module('myApp.controllers', []).
       success(function (data, status, headers, config) {
         $scope.people = data;
         console.log($scope.people);
+        $scope.loading = false;
       }).
       error(function (data, status, headers, config) {
         $scope.people = 'Error!'
