@@ -10,7 +10,12 @@
  path = require('path'),
  passport = require('passport'),
  TwitterStrategy = require('passport-twitter').Strategy,
- Twit = require('twit');
+ Twit = require('twit')
+ //html = require('html')
+ //notemplate = require('express-notemplate')
+ ;
+
+
 
 
  var app = module.exports = express();
@@ -63,6 +68,16 @@ return done(null, {myToken: token, myTokenSecret: tokenSecret, id: profile.id});
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
+
+/*app.set('statics', process.cwd() + '/public');
+app.set('views', process.cwd() + '/views');
+app.engine('html', notemplate.__express);
+app.set('view engine', 'html');
+app.use(express.static(app.get('statics')));
+app.use(notemplate.middleware); // initialize document.location;
+*/
+//app.use(express.static(__dirname + '/public'));
+
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -72,6 +87,7 @@ app.use(express.session({secret:'nytimes'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(__dirname + '/public'));
 app.use(app.router);
 
 // development only
