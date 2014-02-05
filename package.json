@@ -1,14 +1,15 @@
 {
-	"name": "tweetthepress",
-	"version": "0.0.1",
-	"private": false,
-	"dependencies": {
-		"express": "~3.2.6",
-		"jade": "~0.31.2",
-		"passport-twitter": "1.0.2", 
-		"twit": "1.1.11",
-		"passport": "", 
-		"scraper": "",
-		"http-sync": ""
-	}
+  "name": "tweetthepress",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "~3.2.6",
+    "jade": "~0.31.2",
+    "passport-twitter": "1.0.2",
+    "twit": "1.1.11",
+    "passport": "",
+    "scraper": "",
+    "http-sync": "",
+    "async": "~0.2.10"
+  }
 }
