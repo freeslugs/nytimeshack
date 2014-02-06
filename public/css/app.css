@@ -6,7 +6,7 @@
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
-body {
+#cover {
   background: url('../mainpic.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -14,7 +14,7 @@ body {
   background-size: cover;
 }
 
-.container {
+.container-landing {
   background: rgba(255, 255, 255, .85);
   margin: 50px auto;
   max-width: 400px;
