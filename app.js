@@ -47,7 +47,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new TwitterStrategy({
 	consumerKey: "cXxvghlBFhZ7OFdG8u5q6g",
 	consumerSecret: "ld0ma78a82uYKxOhS6DL0wQZglBFJln1QcYALcsVlOM",
-	callbackURL: "http://tweetthepress.herokuapp.com/auth/twitter/callback/" //http://tweetthepress.heroku.com/auth/twitter/callback
+	callbackURL: "http://tweetthepress.herokuapp.com/auth/twitter/callback" //http://tweetthepress.heroku.com/auth/twitter/callback
 },
 function(token, tokenSecret, profile, done) {
     // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
