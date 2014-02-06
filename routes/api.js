@@ -1,7 +1,7 @@
 var queryString = require('querystring');
 var request = require('request');
 var Twit = require('twit');
-//var scraper = require('scraper');
+var scraper = require('scraper');
 //var cheerio = require("cheerio");
 
  var getTwitterImage = function(twitterHandle) {
@@ -27,6 +27,25 @@ var Twit = require('twit');
 // 		}
 // 	});
 // };
+
+exports.get_image = function(req, res) {
+	scraper('https://twitter.com/MPCadosch', function(err, jQuery) {
+		if (err) {throw err}
+			console.log(jQuery('.user-style'));
+			res.json(jQuery('.user-style'));
+			jQuery('.profile-picture media-thumbnail js-tooltip').each(function() {
+				console.log(jQuery(this).text().trim()+'\n');
+			});
+	});
+}
+
+
+	// <a href="https://pbs.twimg.com/profile_images/378800000522010248/403e0b2e85d45395d2330e9bc3291ff1.jpeg" class="profile-picture media-thumbnail js-tooltip" data-resolved-url-large="https://pbs.twimg.com/profile_images/378800000522010248/403e0b2e85d45395d2330e9bc3291ff1.jpeg" data-url="https://pbs.twimg.com/profile_images/378800000522010248/403e0b2e85d45395d2330e9bc3291ff1.jpeg" target="_blank" data-original-title="MP Cadosch">
+	//           <i class="inline-edit-icon hidden"></i>
+	//           <i class="inline-photo-drop-icon hidden"></i>
+
+	//         <img src="https://pbs.twimg.com/profile_images/378800000522010248/403e0b2e85d45395d2330e9bc3291ff1_bigger.jpeg" alt="MP Cadosch" class="avatar size73">
+	//       </a>
 
 /** Scrapping */
 /*var getTwitterImage = function(twitterHandle) {
@@ -109,8 +128,8 @@ exports.get_member_info = function(req, res) {
 
 exports.post_tweet = function(req, res) {
 	var T = new Twit({
-		consumer_key:         'cXxvghlBFhZ7OFdG8u5q6g'
-		, consumer_secret:      'ld0ma78a82uYKxOhS6DL0wQZglBFJln1QcYALcsVlOM'
+		consumer_key:         'nBjewuqqVB8VUVMFrMsbDw'
+		, consumer_secret:      'evnMLknoWSOz4qSLOMZNkcnwlHckqZXh8VypeQ3wM'
 		, access_token:         req.user.myToken
 		, access_token_secret:  req.user.myTokenSecret
 	})
@@ -141,10 +160,10 @@ var parsedHandles = twitterhandles.split(",");
 exports.image_url = function(req, res) {
 
 	var T = new Twit({
-		consumer_key:         'cXxvghlBFhZ7OFdG8u5q6g'
-		, consumer_secret:      'ld0ma78a82uYKxOhS6DL0wQZglBFJln1QcYALcsVlOM'
-		, access_token:         "313001567-8nAPOqvdyvfR1GXrBpQPOt3pwlQpBKpx5QhgRBxc"
-		, access_token_secret:  "f0cfpJ9xbzOJWsKS7VENtswpPOJ0xntztrTp7OSoNeJ1c"
+		consumer_key:         'nBjewuqqVB8VUVMFrMsbDw'
+		, consumer_secret:      'evnMLknoWSOz4qSLOMZNkcnwlHckqZXh8VypeQ3wM'
+		, access_token:         "253580597-G9jGtuOgO757JqxScr23EoQmbKpyDl9OWrlukOrS"
+		, access_token_secret:  "gFtAh71uOxbll9mVqYi75dSVrP0C9dqc2azeBSm8aoSlJ"
 	})
 
 	var query = req._parsedUrl.query;
