@@ -2,10 +2,58 @@ var queryString = require('querystring');
 var request = require('request');
 var Twit = require('twit');
 var scraper = require('scraper');
+var http = require('http');
+//var httpSync = require('http-sync');
+//var scraper = require('scraper');
 //var cheerio = require("cheerio");
+//var httpsync = require('httpsync');
+var async = require('async');
 
- var getTwitterImage = function(twitterHandle) {
- };
+var getTwitterImage = function(twitterHandle) {
+
+	var data = '';
+	var imageUrl;
+
+	request("twitter.com/" + twitterHandle, function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    data = body;
+	  }
+	});
+
+	return data;
+	/*var req = httpsync.get({ url : "twitter.com/" + twitterHandle});
+	var res = req.end();
+	return res;*/
+
+	/*// Test GET request
+	var req = http_sync.request({
+	    host: 'nodejs.org',
+	    path: '/'
+	});
+
+	// console.log(req);
+
+	var res = req.end();
+
+*/
+	/*return httpSync.request({
+	    protocol: 'https',
+	    host: 'twitter.com',
+	    path: '/' + twitterHandle
+	}).end();*/
+
+	/*http.get("http://www.twitter.com/" + twitterHandle, function(response) {
+		response.on("data", function(body) {
+			return body;
+		});
+	}).on('error', function(e) {
+		console.log("Got error: " + e.message);
+	});
+	return test;
+	*/
+
+	
+};
 // 	var T = new Twit({
 // 		consumer_key:         'rKxEEYe0OXdNC2Wh2qlXDA'
 // 		, consumer_secret:      'JMfgdIUkUJj7Mfsdk1xAzD0M2dQ4dHkSjsXdWFtWVw'
@@ -94,8 +142,6 @@ exports.get_committee_info = function(req, res) {
 		res.json(myResult);
 	})
 }
-
-
  
 exports.get_member_info = function(req, res) {
 	// get url string and convert to json object
@@ -113,18 +159,42 @@ exports.get_member_info = function(req, res) {
 	
 	request(url, function(err, result) {
 		var results = JSON.parse(result.body).results;
-		for (var i = results.length - 1; i >= 0; i--) {
-			results[i].name = results[i].first_name + " " + results[i].last_name;
-			if(results[i].twitter_id) {							
-				getTwitterImage(results[i].twitter_id);
+		//iterate over each item, uses async module
+		async.each(results, function(item, callback) {
+			item.name = item.first_name + " " + item.last_name;
+			if(item.twitter_id) {		
+				//scrape online the image
+				request("http://www.twitter.com/" + item.twitter_id, function (error, response, body) {
+				  if (!error && response.statusCode == 200) {
+				    
+				  	/*
+				  	SEARCH FOR THE IMG URL HERE!!!
+				  	 */
+
+					var start = body.indexOf('<img src="https://pbs.twimg.com') + 10;
+					var string = body.substring(start, body.length);
+					var end = string.indexOf('" alt="');
+
+				    item.img_url = string.substring(0, end);
+				    allMembers.push(item); 
+					callback(); 
+				  }
+				});
 			} else {
-				results[i].img_url = "notfound";
-			}
-			allMembers.push(results[i]);
-		};
-		res.json(allMembers);
+				//item.img_url = "notfound";
+				allMembers.push(item); 
+				callback(); 
+			}	
+		}, function(err){
+		    if( err ) {
+		      console.log('legit error');
+		    } else {
+		    	//successfully iterated through al items
+		      res.json(allMembers);
+		    }
+		});
 	});
-};
+}
 
 exports.post_tweet = function(req, res) {
 	var T = new Twit({
